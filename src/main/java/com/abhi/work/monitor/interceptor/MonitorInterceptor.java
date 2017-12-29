@@ -17,8 +17,7 @@ public class MonitorInterceptor extends HandlerInterceptorAdapter {
 	
 
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response , Object handler) {
-		
-		StoreActionType actionType = mapper.getStoreActionType(mapper.getRequestURI(request), request.getMethod());
+		StoreActionType actionType = mapper.getStoreActionType(request.getMethod() , (k,v) -> mapper.getRequestURI(request).matches(k));
 		if(actionType != null) {
 			
 		}
@@ -29,7 +28,7 @@ public class MonitorInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,HttpServletResponse response , Object handler,
 			ModelAndView modelAndView) {
 		
-		StoreActionType actionType = mapper.getStoreActionType(mapper.getRequestURI(request), request.getMethod());
+		StoreActionType actionType = mapper.getStoreActionType(request.getMethod() , (k,v) -> mapper.getRequestURI(request).matches(k));
 		String action="";
 		String acionDescription;
 		if(actionType != null) {

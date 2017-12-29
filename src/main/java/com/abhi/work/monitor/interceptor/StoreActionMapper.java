@@ -2,6 +2,7 @@ package com.abhi.work.monitor.interceptor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiPredicate;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -51,10 +52,10 @@ public class StoreActionMapper {
 		return absoluteUri;
 	}
 
-	public StoreActionType getStoreActionType(String uri , String httpMehod) {
+	public StoreActionType getStoreActionType(String httpMehod , BiPredicate<String, StoreActionType> biPredicate) {
 		
 			for( Map.Entry<String, StoreActionType> entry :   uriMap.get(httpMehod).entrySet()) {
-				if(uri.matches(entry.getKey())) {
+				if(biPredicate.test(entry.getKey(), entry.getValue())) {
 					return entry.getValue();
 				}
 			}
