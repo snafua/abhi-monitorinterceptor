@@ -15,7 +15,7 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(monitorInterceptor).addPathPatterns("/xyz/**");
+		registry.addInterceptor(monitorInterceptor).addPathPatterns("/store/**");
 		
 	}
 
