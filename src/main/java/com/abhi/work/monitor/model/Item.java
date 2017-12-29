@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ITEM" , schema = "abhi_storemgmt")
-public class Item {
+@Table(name="Item" , schema = "abhi_storemgmt")
+public class Item extends BaseEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -24,6 +24,8 @@ public class Item {
 	private String category;
 	@Column(name = "price")
 	private double price;
+	
+	
 	
 	public String getId() {
 		return id;
